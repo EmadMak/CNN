@@ -141,6 +141,13 @@ class NeuralNetwork:
                 batch_loss = self.train_step(X_batch, Y_batch, learn_rate)
                 epoch_loss += batch_loss
 
+                # Log the batch loss every 100 steps to monitor in-epoch progress
+                step_num = i // batch_size + 1
+                if step_num % 100 == 0:
+                    print(
+                        f"Epoch {epoch + 1}/{epochs} - Step {step_num} - Batch Loss: {batch_loss:.4f}"
+                    )
+
             avg_loss = epoch_loss / (num_samples / batch_size)
             print(f"Epoch {epoch + 1}/{epochs} - Loss: {avg_loss:.4f}")
 
