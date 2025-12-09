@@ -99,8 +99,8 @@ class Conv2D:
         output_biased = output_raw + self.biases
         self.last_output_raw = output_biased
 
-        # use an activation function
-        output_activated = self.activation.forward(output_raw)
+        # use an activation function on the biased output so biases influence activations
+        output_activated = self.activation.forward(output_biased)
         return output_activated
 
     def backprop(self, d_L_d_out, learn_rate):
