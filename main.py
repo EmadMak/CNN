@@ -75,7 +75,7 @@ def define_cnn_model():
     return NeuralNetwork(layers=layers)
 
 
-def load_data(base_dir="./data/augmented/", target_size=(28, 28)):
+def load_data(base_dir="./data/augmented/", target_size=(19, 19)):
     """
     Loads ALL PNG images recursively under base_dir, extracting the class label
     (0-9) from the filename's first character.
@@ -185,7 +185,7 @@ def main(mode="train"):
 
     # Hyperparameters
     EPOCHS = 5
-    BATCH_SIZE = 8
+    BATCH_SIZE = 64
     LEARN_RATE = 0.01
     PARAM_FILE = "trained_cnn_params.npz"
 
