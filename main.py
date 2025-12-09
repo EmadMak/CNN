@@ -1,7 +1,7 @@
 import os
 
 import numpy as np
-from Activations import ReLU, SiLU
+from Activations import Linear, ReLU, SiLU
 
 # Assuming your classes are defined in separate files or correctly defined here
 from layers.conv2D_2 import Conv2D
@@ -69,7 +69,8 @@ def define_cnn_model():
         # Input size MUST be the depth of the feature map (16)
         Dense(input_size=FINAL_FEATURE_MAP_DEPTH, output_size=64, activation=ReLU()),
         # --- 5. Dense Layer 2 (Output Layer) ---
-        Dense(input_size=64, output_size=num_classes, activation=ReLU()),
+        # Use a linear activation so logits are unconstrained before Softmax.
+        Dense(input_size=64, output_size=num_classes, activation=Linear()),
     ]
 
     return NeuralNetwork(layers=layers)
